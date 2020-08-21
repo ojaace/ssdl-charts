@@ -1,0 +1,13 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Release.Name }}-ingress
+spec:
+  rules:
+  - host: {{ .Values.host }}.icedc.se
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: jupyterlab
+          servicePort: 8888

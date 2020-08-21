@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jupyterlab
+  labels:
+    app: jupyterlab
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jupyterlab
+      release: {{ .Release.Name }}
+  template:
+    metadata:
+      labels:
+        app: jupyterlab
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: jupyterlab
+        image: jcarlstedt/ssdl-jhub-singleuser:minimal-py36-odc18
+        env:
+        - name: AWS_S3_ENDPOINT
+          value: "10.10.104.34"
+        - name: AWS_VIRTUAL_HOSTING
+          value: "FALSE"
+        - name: GDAL_HTTP_UNSAFESSL
+          value: "YES"
+        - name: GDAL_DISABLE_READDIR_ON_OPEN
+          value: "YES"
+        ports:
+        - name: tcp8888
+          containerPort: 8888
+          protocol: TCP
+        volumeMounts:
+        - name: jupyterlab
+          mountPath: /home/jovyan
+        - name: {{ .Release.Name }}-odc-conf
+          mountPath: /etc/datacube.conf
+          subPath: datacube.conf
+        resources:
+          requests:
+            memory: "4Gi"
+            cpu: "2000m"
+          limits:
+            memory: "8Gi"
+            cpu: "4000m"
+      volumes:
+      - name: jupyterlab
+        persistentVolumeClaim:
+          claimName: jupyterlab
+      - name: {{ .Release.Name }}-odc-conf
+        configMap:
+          name: {{ .Release.Name }}-odc-conf

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ .Release.Name }}-odc-conf
+data:
+  datacube.conf: |
+    [datacube]
+    db_database: odc18
+    db_hostname: 10.10.96.26
+    db_port: 32345
+    db_username: ssdluser
+    db_password: OLYxfpD7NkuljeN0
