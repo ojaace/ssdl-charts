@@ -1,0 +1,6 @@
+subdomain: changeme
+token: changeme
+pvcSize: "10"
+resourceLimits:
+  memory: "8"
+  cpu: "1000"

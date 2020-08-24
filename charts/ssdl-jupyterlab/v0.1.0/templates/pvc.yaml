@@ -1,12 +1,12 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: jupyterlab
+  name: {{ .Release.Name }}-storage
 spec:
   accessModes:
   - ReadWriteOnce
   volumeMode: Filesystem
   resources:
     requests:
-      storage: 10Gi
+      storage: { .Values.pvcSize }GiB
   storageClassName: rook-ceph-rbd

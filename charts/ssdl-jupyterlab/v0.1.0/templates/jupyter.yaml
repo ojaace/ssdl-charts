@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: jupyterlab
+  name: { .Release.Name}-lab
   labels:
     app: jupyterlab
     release: {{ .Release.Name }}
@@ -9,12 +9,12 @@ spec:
   replicas: 1
   selector:
     matchLabels:
-      app: jupyterlab
+      app: {{ .Release.Name }}-lab
       release: {{ .Release.Name }}
   template:
     metadata:
       labels:
-        app: jupyterlab
+        app: {{ .Release.Name }}-lab
         release: {{ .Release.Name }}
     spec:
       containers:
@@ -34,22 +34,19 @@ spec:
           containerPort: 8888
           protocol: TCP
         volumeMounts:
-        - name: jupyterlab
+        - name: {{ .Release.Name }}-storage
           mountPath: /home/jovyan
         - name: {{ .Release.Name }}-odc-conf
           mountPath: /etc/datacube.conf
           subPath: datacube.conf
         resources:
-          requests:
-            memory: "4Gi"
-            cpu: "2000m"
           limits:
-            memory: "8Gi"
-            cpu: "4000m"
+            memory: {{ .Values.resourceLimits.memory }}Gi
+            cpu: {{ .Values.resourceLimits.cpu }}m
       volumes:
-      - name: jupyterlab
+      - name: {{ .Release.Name }}-storage
         persistentVolumeClaim:
-          claimName: jupyterlab
+          claimName: {{ .Release.Name }}-storage
       - name: {{ .Release.Name }}-odc-conf
         configMap:
           name: {{ .Release.Name }}-odc-conf

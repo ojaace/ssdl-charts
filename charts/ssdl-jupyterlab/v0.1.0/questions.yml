@@ -1,0 +1,33 @@
+questions:
+- variable: subdomain
+  type: string
+  required: true
+  default: "changeme"
+  label: "Subdomain for icedc.se"
+  description: "The subdomain (x.icedc.se) where the Jupyter instance will be located"
+  group: "Access settings"
+- variable: token
+  type: string
+  required: true
+  default: "changeme"
+  label: "Jupyter token"
+  description: "A unique token used to protect the Jupyter instance"
+  group: "Access settings"
+- variable: pvcSize
+  type: string
+  default: "10"
+  label: "Storage size (GiB)"
+  description: "The size of the persistant storage connected to the Jupyter instance"
+  group: "Jupyter settings"
+- variable: resourceLimits.memory
+  type: string
+  default: "8"
+  label: "Memory limit (GiB)"
+  description: "The memory limit of the Jupyter instance"
+  group: "Jupyter settings"
+- variable: resourceLimits.cpu
+  type: string
+  default: "1000"
+  label: "CPU limit (milli CPU)"
+  description: "The CPU limit of the Jupyter instance"
+  group: "Jupyter settings"
