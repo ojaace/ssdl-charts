@@ -50,7 +50,7 @@ questions:
     label: "GPU type"
     description: "The type of GPU to attach"
   - variable: gpu.amount
-    type: integer
+    type: int
     min: 0
     max: 8
     default: 1
