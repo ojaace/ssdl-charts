@@ -39,7 +39,7 @@ questions:
   label: "Attach GPU"
   description: "Attach GPU(s) to the Jupyter instance"
   group: "Jupyter settings"
-  show_subquestions_if: true
+  show_subquestion_if: true
   subquestions:
   - variable: gpu.type
     type: enum
