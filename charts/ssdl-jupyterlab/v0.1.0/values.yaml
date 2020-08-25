@@ -1,6 +1,6 @@
 subdomain: "changeme.icedc.se"
 token: "changeme"
-pvcSize: "10GiB"
+pvcSize: "10G"
 resourceLimits:
-  memory: "8Gi"
+  memory: "8G"
   cpu: "1000m"
