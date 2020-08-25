@@ -11,6 +11,11 @@ spec:
     matchLabels:
       app: {{ .Release.Name }}-lab
       release: {{ .Release.Name }}
+  stragegy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -47,6 +52,17 @@ spec:
           limits:
             memory: {{ .Values.resourceLimits.memory | quote }}
             cpu: {{ .Values.resourceLimits.cpu | quote }}
+            {{- if eq .Values.gpu.enable true }}
+            nvidia.com/gpu: {{ .Values.gpu.amount | quote }}
+            {{- end }}
+          requests:
+            {{- if eq .Values.gpu.enable true }}
+            nvidia.com/gpu: {{ .Values.gpu.amount | quote }}
+            {{- end }}
+      {{- if eq .Values.gpu.enable true }}
+      nodeSelector:
+        accelerator: {{ .Values.gpu.type }}
+      {{- end }}
       volumes:
       - name: {{ .Release.Name }}-storage
         persistentVolumeClaim:

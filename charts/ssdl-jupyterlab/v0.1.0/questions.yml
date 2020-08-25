@@ -1,3 +1,5 @@
+categories:
+- SSDL
 questions:
 - variable: subdomain
   type: string
@@ -15,13 +17,13 @@ questions:
   group: "Access settings"
 - variable: pvcSize
   type: string
-  default: "10G"
+  default: "10Gi"
   label: "Storage size (GiB)"
   description: "The size of the persistant storage connected to the Jupyter instance"
   group: "Jupyter settings"
 - variable: resourceLimits.memory
   type: string
-  default: "8G"
+  default: "8Gi"
   label: "Memory limit (GiB)"
   description: "The memory limit of the Jupyter instance"
   group: "Jupyter settings"
@@ -31,3 +33,26 @@ questions:
   label: "CPU limit (milli CPU)"
   description: "The CPU limit of the Jupyter instance"
   group: "Jupyter settings"
+- variable: gpu.enable
+  type: boolean
+  default: true
+  label: "Attach GPU"
+  description: "Attach GPU(s) to the Jupyter instance"
+  group: "Jupyter settings"
+  show_subquestions_if: true
+  subquestions:
+  - variable: gpu.type
+    type: enum
+    options:
+    - "nvidia-gtx-2080ti"
+    - "nvidia-gtx-1080ti"
+    default: "nvidia-gtx-2080ti"
+    label: "GPU type"
+    description: "The type of GPU to attach"
+  - variable: gpu.amount
+    type: integer
+    min: 0
+    max: 8
+    default: 1
+    label: "GPU amount"
+    description: "The amount of GPU(s) to attach"

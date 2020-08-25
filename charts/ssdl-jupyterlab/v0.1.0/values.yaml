@@ -4,3 +4,7 @@ pvcSize: "10G"
 resourceLimits:
   memory: "8G"
   cpu: "1000m"
+gpu:
+  enable: true
+  amount: 1
+  type: "nvidia-gtx-2080ti"
