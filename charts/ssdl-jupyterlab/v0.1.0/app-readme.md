@@ -1,2 +1,2 @@
 # SSDL JupyterLab
-Let's test this!
+This chart will deploy a JupyterLab instance prepared for Swedish Space Data Lab (SSDL).
