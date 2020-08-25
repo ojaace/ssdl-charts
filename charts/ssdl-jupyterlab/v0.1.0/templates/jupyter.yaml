@@ -24,7 +24,7 @@ spec:
     spec:
       containers:
       - name: jupyterlab
-        image: jcarlstedt/ssdl-jhub-singleuser:minimal-py36-odc18
+        image: jcarlstedt/ssdl-jlab:gpu-py36-odc18
         env:
         - name: AWS_S3_ENDPOINT
           value: "10.10.104.34"
