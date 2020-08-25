@@ -29,6 +29,8 @@ spec:
           value: "YES"
         - name: GDAL_DISABLE_READDIR_ON_OPEN
           value: "YES"
+        - name: JUPYTER_TOKEN
+          value: {{ .Values.token | quote }}
         ports:
         - name: tcp8888
           containerPort: 8888
