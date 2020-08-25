@@ -9,5 +9,5 @@ spec:
       paths:
       - path: /
         backend:
-          serviceName: jupyterlab
+          serviceName: {{ .Release.Name }}-svc
           servicePort: 8888
