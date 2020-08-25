@@ -2,7 +2,7 @@ questions:
 - variable: subdomain
   type: string
   required: true
-  default: "changeme"
+  default: "changeme.icedc.se"
   label: "Subdomain for icedc.se"
   description: "The subdomain (x.icedc.se) where the Jupyter instance will be located"
   group: "Access settings"

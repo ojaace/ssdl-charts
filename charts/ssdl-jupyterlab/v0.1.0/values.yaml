@@ -1,5 +1,5 @@
-subdomain: changeme
-token: changeme
+subdomain: "changeme.icedc.se"
+token: "changeme"
 pvcSize: "10GiB"
 resourceLimits:
   memory: "8Gi"

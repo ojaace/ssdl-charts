@@ -4,7 +4,7 @@ metadata:
   name: {{ .Release.Name }}-ingress
 spec:
   rules:
-  - host: {{ .Values.subdomain | quote }}.icedc.se
+  - host: {{ .Values.subdomain | quote }}
     http:
       paths:
       - path: /
