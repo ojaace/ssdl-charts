@@ -41,8 +41,8 @@ spec:
           subPath: datacube.conf
         resources:
           limits:
-            memory: {{ .Values.resourceLimits.memory | quote }}Gi
-            cpu: {{ .Values.resourceLimits.cpu | quote }}m
+            memory: {{ .Values.resourceLimits.memory | quote }}
+            cpu: {{ .Values.resourceLimits.cpu | quote }}
       volumes:
       - name: {{ .Release.Name }}-storage
         persistentVolumeClaim:

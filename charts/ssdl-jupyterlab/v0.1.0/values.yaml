@@ -1,6 +1,6 @@
 subdomain: changeme
 token: changeme
-pvcSize: "10"
+pvcSize: "10GiB"
 resourceLimits:
-  memory: "8"
-  cpu: "1000"
+  memory: "8Gi"
+  cpu: "1000m"

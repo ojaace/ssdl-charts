@@ -15,19 +15,19 @@ questions:
   group: "Access settings"
 - variable: pvcSize
   type: string
-  default: "10"
+  default: "10Gi"
   label: "Storage size (GiB)"
   description: "The size of the persistant storage connected to the Jupyter instance"
   group: "Jupyter settings"
 - variable: resourceLimits.memory
   type: string
-  default: "8"
+  default: "8GiB"
   label: "Memory limit (GiB)"
   description: "The memory limit of the Jupyter instance"
   group: "Jupyter settings"
 - variable: resourceLimits.cpu
   type: string
-  default: "1000"
+  default: "1000m"
   label: "CPU limit (milli CPU)"
   description: "The CPU limit of the Jupyter instance"
   group: "Jupyter settings"

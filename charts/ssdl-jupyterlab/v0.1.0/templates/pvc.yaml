@@ -8,5 +8,5 @@ spec:
   volumeMode: Filesystem
   resources:
     requests:
-      storage: {{ .Values.pvcSize | quote }}GiB
+      storage: {{ .Values.pvcSize | quote }}
   storageClassName: rook-ceph-rbd
