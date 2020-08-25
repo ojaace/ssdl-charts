@@ -31,6 +31,8 @@ spec:
           value: "YES"
         - name: JUPYTER_TOKEN
           value: {{ .Values.token | quote }}
+        - name: JUPYTER_ENABLE_LAB
+          value: "yes"
         ports:
         - name: tcp8888
           containerPort: 8888
