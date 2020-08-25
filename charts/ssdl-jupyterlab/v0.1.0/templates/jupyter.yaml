@@ -25,6 +25,7 @@ spec:
       containers:
       - name: jupyterlab
         image: jcarlstedt/ssdl-jlab:gpu-py36-odc18
+        imagePullPolicy: Always
         env:
         - name: AWS_S3_ENDPOINT
           value: "10.10.104.34"
