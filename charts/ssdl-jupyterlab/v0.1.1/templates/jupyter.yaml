@@ -1,0 +1,77 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Release.Name }}-lab
+  labels:
+    app: jupyterlab
+    release: {{ .Release.Name }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Release.Name }}-lab
+      release: {{ .Release.Name }}
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 0
+      maxUnavailable: 1
+  template:
+    metadata:
+      labels:
+        app: {{ .Release.Name }}-lab
+        release: {{ .Release.Name }}
+    spec:
+      containers:
+      - name: jupyterlab
+        image: jcarlstedt/odc-notebook:latest
+        imagePullPolicy: Always
+        env:
+        - name: AWS_S3_ENDPOINT
+          value: "10.10.104.34"
+        - name: AWS_VIRTUAL_HOSTING
+          value: "FALSE"
+        - name: AWS_ACCESS_KEY_ID
+          value: TGP66WXOY4TV3QUTN4CS
+        - name: AWS_SECRET_ACCESS_KEY
+          value: ibJ5NgN62TlZxMOGA2MNuOj4NhSvfYwqUDSN2L4f
+        - name: GDAL_HTTP_UNSAFESSL
+          value: "YES"
+        - name: GDAL_DISABLE_READDIR_ON_OPEN
+          value: "YES"
+        - name: JUPYTER_TOKEN
+          value: {{ .Values.token | quote }}
+        - name: JUPYTER_ENABLE_LAB
+          value: "yes"
+        ports:
+        - name: tcp8888
+          containerPort: 8888
+          protocol: TCP
+        volumeMounts:
+        - name: {{ .Release.Name }}-storage
+          mountPath: /home/jovyan
+        - name: {{ .Release.Name }}-odc-conf
+          mountPath: /etc/datacube.conf
+          subPath: datacube.conf
+        resources:
+          limits:
+            memory: {{ .Values.resourceLimits.memory | quote }}
+            cpu: {{ .Values.resourceLimits.cpu | quote }}
+            {{- if eq .Values.gpu.enable true }}
+            nvidia.com/gpu: {{ .Values.gpu.amount | quote }}
+            {{- end }}
+          requests:
+            {{- if eq .Values.gpu.enable true }}
+            nvidia.com/gpu: {{ .Values.gpu.amount | quote }}
+            {{- end }}
+      {{- if eq .Values.gpu.enable true }}
+      nodeSelector:
+        accelerator: {{ .Values.gpu.type }}
+      {{- end }}
+      volumes:
+      - name: {{ .Release.Name }}-storage
+        persistentVolumeClaim:
+          claimName: {{ .Release.Name }}-storage
+      - name: {{ .Release.Name }}-odc-conf
+        configMap:
+          name: {{ .Release.Name }}-odc-conf
