@@ -7,6 +7,6 @@ data:
     [datacube]
     db_database: odc18
     db_hostname: 10.10.96.26
-    db_port: 32345
-    db_username: ssdluser
-    db_password: OLYxfpD7NkuljeN0
+    db_port: 30257
+    db_username: hack
+    db_password: Sg_TahLcwxQiId_s

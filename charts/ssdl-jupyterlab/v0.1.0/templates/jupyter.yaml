@@ -31,6 +31,10 @@ spec:
           value: "10.10.104.34"
         - name: AWS_VIRTUAL_HOSTING
           value: "FALSE"
+        - name: AWS_ACCESS_KEY_ID
+          value: TGP66WXOY4TV3QUTN4CS
+        - name: AWS_SECRET_ACCESS_KEY
+          value: ibJ5NgN62TlZxMOGA2MNuOj4NhSvfYwqUDSN2L4f
         - name: GDAL_HTTP_UNSAFESSL
           value: "YES"
         - name: GDAL_DISABLE_READDIR_ON_OPEN
