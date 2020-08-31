@@ -6,7 +6,7 @@ data:
   datacube.conf: |
     [datacube]
     db_database: odc18
-    db_hostname: 10.10.96.26
+    db_hostname: 10.10.116.26
     db_port: 30257
     db_username: hack
     db_password: Sg_TahLcwxQiId_s
