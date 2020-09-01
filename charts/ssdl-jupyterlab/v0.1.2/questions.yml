@@ -1,0 +1,58 @@
+categories:
+- SSDL
+questions:
+- variable: subdomain
+  type: string
+  required: true
+  default: "changeme.icedc.se"
+  label: "Subdomain for icedc.se"
+  description: "The subdomain (x.icedc.se) where the Jupyter instance will be located"
+  group: "Access settings"
+- variable: token
+  type: string
+  required: true
+  default: "changeme"
+  label: "Jupyter token"
+  description: "A unique token used to protect the Jupyter instance"
+  group: "Access settings"
+- variable: pvcSize
+  type: string
+  default: "10Gi"
+  label: "Storage size (GiB)"
+  description: "The size of the persistant storage connected to the Jupyter instance"
+  group: "Jupyter settings"
+- variable: resourceLimits.memory
+  type: string
+  default: "8Gi"
+  label: "Memory limit (GiB)"
+  description: "The memory limit of the Jupyter instance"
+  group: "Jupyter settings"
+- variable: resourceLimits.cpu
+  type: string
+  default: "1000m"
+  label: "CPU limit (milli CPU)"
+  description: "The CPU limit of the Jupyter instance"
+  group: "Jupyter settings"
+- variable: gpu.enable
+  type: boolean
+  default: true
+  label: "Attach GPU"
+  description: "Attach GPU(s) to the Jupyter instance"
+  group: "Jupyter settings"
+  show_subquestion_if: true
+  subquestions:
+  - variable: gpu.type
+    type: enum
+    options:
+    - "nvidia-gtx-2080ti"
+    - "nvidia-gtx-1080ti"
+    default: "nvidia-gtx-2080ti"
+    label: "GPU type"
+    description: "The type of GPU to attach"
+  - variable: gpu.amount
+    type: int
+    min: 0
+    max: 8
+    default: 1
+    label: "GPU amount"
+    description: "The amount of GPU(s) to attach"
